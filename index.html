@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script type="text/javascript" src="js/tween.js"></script>
+		<style type="text/css">
+			p,li{
+				list-style: none;
+				margin: 0;padding: 0;
+			}
+			#mian{
+				margin: auto;
+				width: 320px;
+				height: 480px;
+				background-image:url('imgs/myrank_bg.jpg') ;
+				position: relative;
+			}
+			#top-success{
+				width: 320px;
+				height: 45px;
+				background-image:url("imgs/game_bg - 副本.jpg") ;
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				color:white;
+				font-weight: 700;
+			}
+			#top-success span{
+				line-height: 45px;
+				padding: 60px;
+			}
+			#time{
+				width: 320px;
+				height: 55px;
+				background-image: url('imgs/game_bg.jpg');
+				position: absolute;
+				top: 45px;
+				left: 0px;
+			}
+			#progress{
+				widows: 180px;
+				height: 16px;
+				margin-top:18px ;
+				margin-left: 64px;
+				overflow: hidden;
+			}
+		    #progress-flow{
+				width:540px;
+				height: 16px;
+			}
+			#progress-flow img{
+				width: 180px;
+				height: 17px;
+			}
+			#strat {
+				text-align: center;
+				width: 100px;
+				position: absolute;
+				top: 300px;
+				left: 110px;
+				
+			}
+			#strat input{
+				width: 100px;
+				height: 50px;
+				color: orange;
+				font-weight: 700;
+				font-size: 30px;
+				border: none;
+				background: rgba(0,0,0,0);
+				
+			}
+			#animior ,#animior1{
+				width: 108px;
+				height: 101px;
+				position: absolute;
+				visibility: hidden;
+			}
+			#animior,#pan-saucepan-big{
+				top:221px;
+				left: 15px;	
+			}
+			#animior1,#pan-saucepan-little{
+				top: 143px;
+				left:187px;
+			}
+			#wolf, #litgray{
+				width: 108px;
+				height: 101px;
+				overflow: hidden;
+			}
+			#bigwolf,#smlwolf{
+				width:1404px;
+				height: 101px;
+				float: left;
+			}
+			#bigwolf li,#smlwolf li,#pan-bigwolf-img li,#pan-tingwolf-img li{
+				float: left;
+			}
+		
+			#pan-saucepan-big,#pan-saucepan-little{
+				width: 108px;
+				height: 101px;
+				position: absolute;
+				display: none;
+				
+			}
+			#pan-bigwolf,#pan-tingwolf{
+				width: 108px;
+				height: 101px;
+				overflow: hidden;
+			}
+			#pan-bigwolf-img ,#pan-tingwolf-img{
+				height: 101px;
+				width: 540px;
+			}
+			
+		
+		</style>
+	</head>
+	<body>
+		<!--body-->
+		<div id="mian">
+			<!--顶部计分模块-->
+			<div id="top-success">
+				<span id="scorecard"> </span>
+			</div>
+			<!--进度条模块-->
+			<div id="time">
+				<!--进度条-->
+				<div id="progress">
+					<div id="progress-flow">
+						<li>
+						<img src="imgs/progress.png"/>
+						</li>
+					</div>						
+				</div>	
+			</div>
+			<div id="strat">
+				<input type="button" value="开始"  />
+			</div>
+			<!--进度条和开始设计-->
+			<script type="text/javascript">
+			var oMain = document.getElementById("mian")
+			var oStrat =document.getElementById("strat");
+			var oProgress = document.getElementById("progress");
+			var oProgressFlow = document.getElementById("progress-flow");
+	
+			oStrat.onclick=function(){
+			    oStrat.style.display="none";			
+				wolf();
+				younwolf();
+				setInterval(function(){
+					oProgress.scrollLeft +=1
+					},125)	;
+		        }	
+		</script>
+			<!--狼儿div设计-->
+			<div id="animior">
+				<div id="wolf">
+					<div id="bigwolf">
+						<li><img src="imgs/h0.png"/></li>
+						<li><img src="imgs/h1.png"/></li>
+						<li><img src="imgs/h2.png"/></li>
+						<li><img src="imgs/h3.png"/></li>
+						<li><img src="imgs/h4.png"/></li>
+						<li><img src="imgs/h5.png"/></li>
+						<li><img src="imgs/h5.png"/></li>
+						<li><img src="imgs/h4.png"/></li>
+						<li><img src="imgs/h3.png"/></li>
+						<li><img src="imgs/h2.png"/></li>
+						<li><img src="imgs/h1.png"/></li>
+						<li><img src="imgs/h0.png"/></li>
+					</div>
+				</div>
+			</div>
+			<div id="animior1">
+				<div id="litgray">
+					<div id="smlwolf">
+						<li><img src="imgs/x0.png"/></li>
+						<li><img src="imgs/x1.png"/></li>
+						<li><img src="imgs/x2.png"/></li>
+						<li><img src="imgs/x3.png"/></li>
+						<li><img src="imgs/x4.png"/></li>
+						<li><img src="imgs/x5.png"/></li>
+						<li><img src="imgs/x5.png"/></li>
+						<li><img src="imgs/x4.png"/></li>
+						<li><img src="imgs/x3.png"/></li>
+						<li><img src="imgs/x2.png"/></li>
+						<li><img src="imgs/x1.png"/></li>
+						<li><img src="imgs/x0.png"/></li>	
+					</div>
+				</div>
+			</div>
+			<!--狼儿运动设计1-出洞-->
+			<script type="text/javascript">
+				var oAnimior = document.getElementById("animior")	
+				var oAnimior1 = document.getElementById("animior1")	
+				
+				var oWolf = document.getElementById("wolf")	
+				var oBigwolf = document.getElementById("bigwolf")	
+			 	var oLitgray = document.getElementById("litgray")
+			 	var oSnlwolf = document.getElementById("smlwolf")
+			 	var liArr =  oBigwolf.getElementsByTagName("li");
+				var liArr1 =  oSnlwolf.getElementsByTagName("li");
+			
+				var liheight = liArr[0].offsetHeight;
+				var liheight2 = liArr1[0].offsetHeight;
+				
+			 	var wolf = function(){
+					setInterval(function(){
+						oWolf.scrollLeft +=108;
+						if( oWolf.scrollLeft<1296){
+								oAnimior.style.visibility="visible"
+							}else{	
+								oAnimior.style.display="none"
+//								console.log("test")
+								}
+							},70);
+					//中间暂停，还需调试
+//					var timer = setInterval(scrollFn,50);
+//					function scrollFn(){
+//						oWolf.scrollLeft +=108;
+//						console.log(oWolf.scrollLeft)
+//						
+//						//在每个li节点停1s，通过上升的距离对li的高度取余在第六个停止1s滑
+//						if(oWolf.scrollLeft%liheight == 5){
+//							clearInterval(timer);
+//							console.log("stop")
+//							setTimeout(function(){
+//								timer = setInterval(scrollFn,50);
+//								},5000)
+//							}
+//						
+//						}
+				    }
+			 	var younwolf= function(){
+					setInterval(function(){
+						oLitgray.scrollLeft += 108;
+						
+						if(oLitgray.scrollLeft<1296){
+//							console.log(oLitgray.scrollLeft)
+							oAnimior1.style.visibility="visible"
+						}else{
+							oAnimior1.style.display="none"
+							}
+						},70)	;
+						
+					////中间暂停，还需调试
+//					var timer = setInterval(scrollFn1,50);
+//					function scrollFn1(){
+//						oLitgray.scrollLeft +=108;
+//						
+//						//在每个li节点停1s，通过上升的距离对li的高度取余在第六个停止1s
+//						if(oLitgray.scrollLeft%liheight2 == 7){
+//							clearInterval(timer);
+//							console.log("stop")
+//							setTimeout(function(){
+//								timer = setInterval(scrollFn1,50);
+//								},1000)
+//							}
+//						}
+			 	    }
+			</script>
+			<!--平底锅设计素材加载-->
+			<div id="pan-saucepan-big">
+				<div id="pan-bigwolf">
+					<div id="pan-bigwolf-img">
+						<li><img src="imgs/h6.png"/></li>
+						<li><img src="imgs/h7.png"/></li>
+						<li><img src="imgs/h8.png"/></li>
+						<li><img src="imgs/h9.png"/></li>
+					</div>
+				</div>
+			</div>
+			<div id="pan-saucepan-little">
+				<div id="pan-tingwolf">
+					<div id="pan-tingwolf-img">
+						<li><img src="imgs/x6.png"/></li>
+						<li><img src="imgs/x7.png"/></li>
+						<li><img src="imgs/x8.png"/></li>
+						<li><img src="imgs/x9.png"/></li>
+					</div>
+				</div>
+			</div>
+			<!--平底锅打击效果-->
+			<script type="text/javascript">
+				var oScorecard = document.getElementById("scorecard")
+				var oSaucepan = document.getElementById("pan-saucepan-big");
+				var oPanBigWolf = document.getElementById("pan-bigwolf");
+				var oPanbigwolfImg = document.getElementById("pan-bigwolf-img");
+				var oPansaucepanlittle = document.getElementById("pan-saucepan-little");
+				var oPanTingwolf = document.getElementById("pan-tingwolf");
+				var oPanTingwolfImg = document.getElementById("pan-tingwolf-img");
+				
+				   oAnimior.onclick=function(){
+				   		oScorecard.innerHTML +=10
+				   	
+						oSaucepan.style.display="block"
+						oAnimior.style.display="none"
+						setInterval(function(){
+							oPanBigWolf.scrollLeft +=108;
+								},100);
+					}
+					oAnimior1.onclick=function(){
+						oScorecard.innerHTML -=10
+						
+						oPansaucepanlittle.style.display="block"
+						oAnimior1.style.display="none"
+						setInterval(function(){
+							oPanTingwolf.scrollLeft +=108;
+							console.log(oPanBigWolf.scrollLeft)
+							
+//							console.log("text")
+								},100);
+					
+					}
+				
+			</script>
+			<!--循环对象-->
+			<script type="text/javascript">
+				var top;
+				var left;
+				var arrDic;
+				var arrPos=[{l:"98px",t:"115px"},{l:"17px",t:"160px"},{l:"15px",t:"220px"},{l:"30px",t:"293px"},{l:"122px",t:"273px"},{l:"207px",t:"295px"},{l:"200px",t:"211px"},{l:"187px",t:"141px"},{l:"100px",t:"185px"}];
+					setInterval(function(){
+						//随机去数组中的一组元素
+						var index = Math.floor((Math.random()*arrPos.length)); 							
+						//将取出的元素值赋给left和top
+						keyPaos = arrPos[index];
+						
+						for (var i =0;i<keyPaos.length;i++){
+							left = keyPaos[i].l;
+							console.log(left)
+							top = keyPaos[i].t;
+							console.log(top)
+						}
+															
+					},1000)
+					
+//				var top;
+//				var left;
+//				function check(){
+//					top=oAnimior.offsetTop;
+//					left=oAnimior.offsetLeft;
+//					
+//				}
+//				for(var i=0;i<=arrPos.length;i++){
+//								arrDic=arrPos[i];
+//								top = arrDic[t];
+//								left = arrDic[l];
+//								console.log(arrDic[t])
+//								console.log(left);
+//						oAnimior.style.absolutel;			
+//						}
+				
+			</script>
+		</div>
+	</body>
+</html>

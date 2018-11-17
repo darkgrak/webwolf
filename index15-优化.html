@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+		ul,li{
+			margin: 0;padding: 0;
+			list-style: none;
+		}
+		#main{
+			width: 500px;
+			padding: 10px;
+			border: 1px grey solid;
+			background-color: #f5f5f5;
+			font-size: 12px;
+			margin: 0 auto;
+		}
+		#user-panel,#con-panel{
+			width: 480px;
+			margin-bottom: 10px;
+		}
+		#user-panel input{
+			width: 430px;
+		}
+		
+		#con-panel *{
+			vertical-align: top;
+		}
+		#con-panel textarea{
+			width: 430px;
+			height: 100px;
+		}
+		
+		#submit{
+			margin-left: 30px;
+			width: 80px;
+		}
+		
+		#msgs .msg-head{
+			padding: 10px;
+			font-weight: bold;
+			background-color: lightgray;
+			border-bottom: 1px darkgray solid;
+		}
+		#msgs .msg-con{
+			background-color: white;
+			border-bottom: 1px darkgray solid;
+			padding: 10px;
+			text-indent: 2em;
+			overflow: hidden;
+		}
+		#msgs li{
+			overflow: hidden;
+		}
+		#msgs a{
+			float: right;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="main">
+			<div id="input-panel">
+				<div id="user-panel">
+					姓名:
+					<input type="text" id="user"/>
+				</div>
+				<div id="con-panel">
+					<span>内容:</span>
+					<textarea id="content"></textarea>
+				</div>
+				
+				<button id="submit">提交</button>
+			</div>
+			<h3>显示留言</h3>
+			<ul id="msgs">
+				<!--<li>
+					<div class="msg-head">
+						adfads
+					</div>
+					<div class="msg-con">
+						<a href="###">删除</a>
+						<div id="msg">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur dolorem?
+						</div>
+					</div>
+				</li>-->
+
+			</ul>
+		</div>
+	</body>
+	
+	<script type="text/javascript" src="js/tween.js" ></script>
+	<script>
+		var oUser = document.getElementById("user")
+		var oContent = document.getElementById("content")
+		var oMsgs = document.getElementById("msgs")
+		var oSubmit = document.getElementById("submit")
+			
+		oSubmit.onclick = function(){
+			
+			if(oUser.value == ""||oContent.value == "")	{
+				alert("输入完整内容");
+				return
+				}
+			
+			var oLi = document.createElement("li")
+				oLi.innerHTML = " \
+					<div class='msg-head'>" +
+						oUser.value + " \
+					</div> \
+					<div class='msg-con'> \
+						<a href='###'>删除</a> \
+						<div id='msg'>" +
+							 oContent.value +
+						"</div> \
+					</div>";
+			oMsgs.appendChild(oLi);
+			var starheight = oLi.offsetHeight;
+			oLi.style.height = 0;
+			
+			var start = 0;
+			var end = starheight;
+			var change= end- start;
+			
+			var step = 0;
+			var maxstep = 30
+			var olitimer = setInterval(function(){
+				step ++;
+				if(step == maxstep){
+					clearInterval(olitimer);
+				}
+				oLi.style.height = Tween.Bounce.easeOut(step,start,change,maxstep)+"px";
+			},30)
+									
+		}	
+	
+	</script>
+</html>
